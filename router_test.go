@@ -60,11 +60,11 @@ func TestRouter(t *testing.T) {
 }
 
 type handlerStruct struct {
-	handeled *bool
+	handled *bool
 }
 
 func (h handlerStruct) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	*h.handeled = true
+	*h.handled = true
 }
 
 func TestRouterAPI(t *testing.T) {

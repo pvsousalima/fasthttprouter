@@ -2,6 +2,7 @@ sudo: false
 language: go
 
 go:
+<<<<<<< HEAD
   - 1.5
   - 1.6
   - 1.7
@@ -24,3 +25,21 @@ script:
 
 -after_success:
   - coveralls
+=======
+  - 1.7.x
+  - 1.8.x
+  - 1.9.x
+  - 1.10.x
+  - 1.11.x
+  - master
+before_install:
+  - go get golang.org/x/lint/golint
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+script:
+  - go test -v -covermode=count -coverprofile=coverage.out
+  - go vet ./...
+  - test -z "$(gofmt -d -s . | tee /dev/stderr)"
+  - test -z "$(golint ./... | tee /dev/stderr)"
+  - $HOME/gopath/bin/goveralls  -coverprofile=coverage.out -service=travis-ci
+>>>>>>> 26a05976f9bf5c3aa992cc20e8588c359418ee58
